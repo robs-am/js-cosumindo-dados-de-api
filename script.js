@@ -6,8 +6,14 @@ async function buscaEndereco(cep) {
       throw Error("CEP não existente!");
     }
     console.log(consultaCEPConvertida);
+    return consultaCEPConvertida;
   } catch (erro) {
     console.log(erro);
   }
 }
+
+let ceps = ['01001000', '01001001'];
+let conjuntoCeps = ceps.map(valores => buscaEndereco(valores));
+Promise.all(conjuntoCeps).then(respostas => console.log(respostas));
+
 buscaEndereco();
